@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const toggleBilling = () => {
     setIsAnnual(!isAnnual);
@@ -13,6 +14,26 @@ export default function PricingSection() {
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target as HTMLElement;
+          const delay = parseInt(el.dataset.delay || '0');
+          setTimeout(() => el.classList.add('visible'), delay);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    if (sectionRef.current) {
+      const cards = sectionRef.current.querySelectorAll('.price-card');
+      cards.forEach(card => observer.observe(card));
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const faqs = [
     {
@@ -34,7 +55,7 @@ export default function PricingSection() {
   ];
 
   return (
-    <section id="pricing">
+    <section id="pricing" ref={sectionRef}>
       <div className="section-inner">
         <div className="text-center">
           <span className="section-label">Pricing</span>
@@ -57,7 +78,7 @@ export default function PricingSection() {
 
         <div className="pricing-grid">
           {/* Starter */}
-          <div className="price-card">
+          <div className="price-card" data-delay="0">
             <div className="pc-plan">Starter</div>
             <div className="pc-price">Free</div>
             <div className="pc-period">forever</div>
@@ -75,7 +96,7 @@ export default function PricingSection() {
           </div>
 
           {/* Pro */}
-          <div className="price-card featured">
+          <div className="price-card featured" data-delay="160">
             <div className="popular-badge">Most Popular</div>
             <div className="pc-plan">Pro</div>
             <div className="pc-price">
@@ -103,7 +124,7 @@ export default function PricingSection() {
           </div>
 
           {/* Enterprise */}
-          <div className="price-card">
+          <div className="price-card" data-delay="320">
             <div className="pc-plan">Enterprise</div>
             <div className="pc-price" style={{fontSize: '22px', marginTop: '6px'}}>Custom</div>
             <div className="pc-period">contact us</div>

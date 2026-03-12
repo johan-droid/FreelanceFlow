@@ -21,6 +21,7 @@ export default function FeaturesSection() {
     }
   ]);
 
+  const sectionRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
   const taxData = {
@@ -53,6 +54,11 @@ export default function FeaturesSection() {
         }
       });
     }, { threshold: 0.12 });
+
+    if (sectionRef.current) {
+      const blocks = sectionRef.current.querySelectorAll('.feature-block');
+      blocks.forEach(block => observer.observe(block));
+    }
 
     if (timelineRef.current) {
       const steps = timelineRef.current.querySelectorAll('.tl-step');
@@ -99,13 +105,13 @@ export default function FeaturesSection() {
   };
 
   return (
-    <section id="features">
+    <section id="features" ref={sectionRef}>
       <div className="section-inner">
         <span className="section-label">How FreelanceFlow works</span>
         <h2 className="section-h2">Four tools. One <em>financial foundation.</em></h2>
 
         {/* Feature 1 */}
-        <div className="feature-block" style={{marginTop: '52px'}}>
+        <div className="feature-block" data-delay="0" style={{marginTop: '52px'}}>
           <div className="feat-text">
             <div className="feat-label">01 — Safe-to-spend engine</div>
             <h3 className="feat-h3">Your personal spending number, recalculated monthly</h3>
@@ -172,7 +178,7 @@ export default function FeaturesSection() {
         </div>
 
         {/* Feature 2 */}
-        <div className="feature-block reverse">
+        <div className="feature-block reverse" data-delay="120">
           <div className="feat-text">
             <div className="feat-label">02 — Automated tax planning</div>
             <h3 className="feat-h3">Know your tax bill before the IRS does</h3>
@@ -233,7 +239,7 @@ export default function FeaturesSection() {
         </div>
 
         {/* Feature 3 */}
-        <div className="feature-block">
+        <div className="feature-block" data-delay="240">
           <div className="feat-text">
             <div className="feat-label">03 — Bank sync & reconciliation</div>
             <h3 className="feat-h3">Invoice sent. Payment received. Matched automatically.</h3>
@@ -291,7 +297,7 @@ export default function FeaturesSection() {
         </div>
 
         {/* Feature 4 */}
-        <div className="feature-block reverse">
+        <div className="feature-block reverse" data-delay="360">
           <div className="feat-text">
             <div className="feat-label">04 — AI financial coach</div>
             <h3 className="feat-h3">Your personal CFO, available 24/7</h3>

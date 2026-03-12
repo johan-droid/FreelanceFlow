@@ -1,6 +1,32 @@
+ 'use client';
+
+import { useEffect, useRef } from 'react';
+
 export default function SecuritySection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target as HTMLElement;
+          const delay = parseInt(el.dataset.delay || '0');
+          setTimeout(() => el.classList.add('visible'), delay);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    if (sectionRef.current) {
+      const items = sectionRef.current.querySelectorAll('.sec-card, .partner-item');
+      items.forEach(item => observer.observe(item));
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="security">
+    <section id="security" ref={sectionRef}>
       <div className="section-inner">
         <div className="text-center">
           <div className="divider-line mx-auto"></div>
@@ -11,7 +37,7 @@ export default function SecuritySection() {
           </h2>
         </div>
         <div className="security-grid">
-          <div className="sec-card">
+          <div className="sec-card" data-delay="0">
             <div className="sec-icon">🔐</div>
             <div className="sec-title">Bank-Level Encryption</div>
             <p className="sec-desc">
@@ -24,7 +50,7 @@ export default function SecuritySection() {
               <li>90-day automatic key rotation</li>
             </ul>
           </div>
-          <div className="sec-card">
+          <div className="sec-card" data-delay="160">
             <div className="sec-icon">🛡️</div>
             <div className="sec-title">SOC 2 Type II Certified</div>
             <p className="sec-desc">
@@ -37,7 +63,7 @@ export default function SecuritySection() {
               <li>Zero data breaches since launch</li>
             </ul>
           </div>
-          <div className="sec-card">
+          <div className="sec-card" data-delay="320">
             <div className="sec-icon">🌍</div>
             <div className="sec-title">GDPR & Privacy Ready</div>
             <p className="sec-desc">
@@ -52,19 +78,19 @@ export default function SecuritySection() {
           </div>
         </div>
         <div className="partner-row">
-          <div className="partner-item">
+          <div className="partner-item" data-delay="420">
             <div className="partner-name">PLAID</div>
             <div className="partner-sub">Bank connectivity</div>
           </div>
-          <div className="partner-item">
+          <div className="partner-item" data-delay="500">
             <div className="partner-name">STRIPE</div>
             <div className="partner-sub">Payment processing</div>
           </div>
-          <div className="partner-item">
+          <div className="partner-item" data-delay="580">
             <div className="partner-name">AWS</div>
             <div className="partner-sub">Infrastructure</div>
           </div>
-          <div className="partner-item">
+          <div className="partner-item" data-delay="660">
             <div className="partner-name">ANTHROPIC</div>
             <div className="partner-sub">AI coaching</div>
           </div>
