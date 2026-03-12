@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-/frontend/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -16,8 +15,10 @@
 
 # next.js
 /.next/
-/frontend/.next/
 /out/
+
+# turbopack / turbo
+.turbo
 
 # production
 /build
@@ -32,11 +33,18 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files (keep .env.example committable)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+
+# tooling caches
+.eslintcache
