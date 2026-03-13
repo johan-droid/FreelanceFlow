@@ -1,6 +1,5 @@
 # dependencies
 /node_modules
-/frontend-final/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -12,8 +11,6 @@
 # next.js
 /.next/
 /out/
-/frontend-final/.next/
-/frontend-final/out/
 
 # build and tooling caches
 /build
