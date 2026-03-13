@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="FreelanceFlow">
+  <rect width="512" height="512" rx="112" fill="#0a0f1e"/>
+  <rect x="56" y="56" width="400" height="400" rx="92" fill="none" stroke="#c9a84c" stroke-width="16" opacity="0.9"/>
+  <g fill="#c9a84c">
+    <path d="M158 178h98v30h-68v34h62v30h-62v62h-30V178z"/>
+    <path d="M286 178h98v30h-68v34h62v30h-62v62h-30V178z" opacity="0.92"/>
+    <path d="M256 178h30v198h-30V178z" opacity="0.35"/>
+  </g>
+</svg>
