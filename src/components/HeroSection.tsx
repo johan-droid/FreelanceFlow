@@ -41,6 +41,20 @@ export default function HeroSection() {
         <div className="hero-right">
           <div className="dashboard-wrap" style={{animationDelay: '0.3s'}}>
             {/* Floating cards */}
+            <div className="tile-orbit" aria-hidden="true">
+              <div className="float-tile t-1">
+                <span>Invoices</span>
+                <strong>12 Paid</strong>
+              </div>
+              <div className="float-tile t-2">
+                <span>Retention</span>
+                <strong>91%</strong>
+              </div>
+              <div className="float-tile t-3">
+                <span>Runway</span>
+                <strong>5.2 mo</strong>
+              </div>
+            </div>
             <div className="float-card fc-1">
               <div className="fc-label">Annual tracked</div>
               <div className="fc-val">$52,800</div>
