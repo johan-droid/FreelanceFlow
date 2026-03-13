@@ -100,7 +100,7 @@ self.__SERVER_FILES_MANIFEST={
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "D:\\freelancer-agent",
+    "outputFileTracingRoot": "D:\\freelancer-agent\\frontend",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -294,11 +294,11 @@ self.__SERVER_FILES_MANIFEST={
     "configFileName": "next.config.ts",
     "reactCompiler": true,
     "turbopack": {
-      "root": "D:\\freelancer-agent"
+      "root": "D:\\freelancer-agent\\frontend"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "D:\\freelancer-agent",
+  "appDir": "D:\\freelancer-agent\\frontend",
   "relativeAppDir": "",
   "files": [
     ".next\\routes-manifest.json",
